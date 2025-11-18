@@ -14,8 +14,8 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
       overflow: hidden;
-      background: #0a0a0a;
-      color: white;
+      background: #ffffff;
+      color: rgb(0, 0, 0);
     }
 
     #bgVideo {
@@ -26,7 +26,7 @@
       height: 100vh;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.25;
+      opacity: 1;
       filter: blur(2px);
     }
 
@@ -50,7 +50,7 @@
     .header h1 {
       font-size: 56px;
       font-weight: 700;
-      background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+      background: linear-gradient(135deg, #110202 0%, #000000 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -59,8 +59,8 @@
     }
 
     .header p {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.5);
+      font-size: 20px;
+      color: rgba(41, 0, 0, 0.87);
       font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -256,7 +256,7 @@
       text-transform: uppercase;
       letter-spacing: 0.8px;
       white-space: nowrap;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 12px rgba(250, 248, 248, 0.974);
       flex-shrink: 0;
     }
 
@@ -267,7 +267,7 @@
 
     .status-printing {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      color: rgb(248, 248, 248);
       animation: pulse 2s ease-in-out infinite;
       box-shadow: 0 2px 20px rgba(102, 126, 234, 0.6);
     }
@@ -358,7 +358,7 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <strong>${data.username || data.userId || 'Anonymous'}</strong>
+            <strong>${data.username || 'Anonymous'}</strong>
           </div>
         </div>
         

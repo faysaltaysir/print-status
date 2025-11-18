@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Printer Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    #infoBox {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      color: white;
+      font-size: 26px;
+      background: rgba(0,0,0,0.45);
+      padding: 20px 30px;
+      border-radius: 10px;
+      line-height: 1.6;
+      z-index: 10;
+      max-width: 600px;
+      backdrop-filter: blur(6px);
+    }
+
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen Background Video -->
+  <video id="bgVideo" autoplay loop muted playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Firebase Live Data Overlay -->
+  <div id="infoBox">
+    Loading print job...
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // -----------------------------------------
+    // Firebase Imports
+    // -----------------------------------------
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // -----------------------------------------
+    // Firebase Config
+    // (PUT YOUR REAL CONFIG HERE)
+    // -----------------------------------------
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpVm6rcyV0rauQx8",
+    authDomain: "printin-4ab5b.firebaseapp.com",
+    projectId: "printin-4ab5b",
+    storageBucket: "printin-4ab5b.firebasestorage.app",
+    messagingSenderId: "218508375683",
+    appId: "1:218508375683:web:8e4df85b8db6",
+    measurementId: "G-LMFTZ"
+  };
+    // Init Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // -----------------------------------------
+    // Listening for a Specific Print Job
+    // Change JOB_ID to the print job document
+    // -----------------------------------------
+    const JOB_ID = "HKBtDhu6pLsd5DTRefUz"; 
+
+    const ref = doc(
+      db,
+      "print_jobs",
+      JOB_ID,
+
+    );
+
+    // -----------------------------------------
+    // Real-time Updates
+    // -----------------------------------------
+    onSnapshot(ref, (snapshot) => {
+      if (!snapshot.exists()) {
+        document.getElementById("infoBox").innerHTML = "No job found.";
+        return;
+      }
+
+      const data = snapshot.data();
+
+      // Build UI Text
+      const html = `
+        <b>Print Job Details</b><br><br>
+        <b>File:</b> ${data.fileName}<br>
+        <b>Pages:</b> ${data.totalPages}<br>
+        <b>Copies:</b> ${data.copies}<br>
+        <b>Orientation:</b> ${data.orientation}<br>
+        <b>Paper Size:</b> ${data.paperSize}<br>
+        <b>Color:</b> ${data.colorMode}<br>
+        <b>Quality:</b> ${data.quality}<br><br>
+
+        <b>Status:</b> ${data.status}<br>
+        <b>Payment:</b> ${data.paymentStatus}<br>
+        <b>Cost:</b> ${data.totalCost}<br><br>
+
+        <b>User:</b> ${data.userId}<br>
+        <b>Time:</b> ${data.createdAt}<br>
+      `;
+
+      document.getElementById("infoBox").innerHTML = html;
+    });
+  </script>
+
+</body>
+</html>

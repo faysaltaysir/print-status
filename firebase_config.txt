@@ -1,0 +1,9 @@
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpVmAXTpgjC6rcyLaeegCV2pxV0rauQx8",
+    authDomain: "printin-4ba7b.firebaseapp.com",
+    projectId: "printin-4ba7b",
+    storageBucket: "printin-4ba7b.firebasestorage.app",
+    messagingSenderId: "218508375683",
+    appId: "1:218508375683:web:8e40fdfc254333f85b8db6",
+    measurementId: "G-LMFT81PSMZ"
+  };

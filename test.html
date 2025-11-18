@@ -14,10 +14,8 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
       overflow: hidden;
-      background: #000000;
+      background: #ffffff;
       color: rgb(0, 0, 0);
-      position: relative;
-      min-height: 100vh;
     }
 
     #bgVideo {
@@ -27,52 +25,42 @@
       width: 100vw;
       height: 100vh;
       object-fit: cover;
-      z-index: 0;
+      z-index: -1;
       opacity: 1;
-    }
-
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
-      z-index: 1;
-      backdrop-filter: blur(2px);
-      pointer-events: none;
+      filter: blur(2px);
     }
 
     .dashboard-container {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100vh;
-      padding: 40px;
+      padding: 50px;
       display: flex;
       flex-direction: column;
       gap: 30px;
-      overflow: hidden;
-      z-index: 10;
     }
 
     .header {
       text-align: center;
       position: relative;
-      z-index: 10;
     }
 
     .header h1 {
       font-size: 56px;
       font-weight: 700;
-      color: #ffffff;
+      background: linear-gradient(135deg, #110202 0%, #000000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       letter-spacing: -2px;
       margin-bottom: 8px;
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     }
 
     .header p {
       font-size: 20px;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(41, 0, 0, 0.87);
       font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -85,47 +73,49 @@
       flex-direction: column;
       gap: 20px;
       padding-right: 10px;
-      padding-bottom: 20px;
     }
 
     .jobs-container::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     .jobs-container::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
     }
 
     .jobs-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
     }
 
     .jobs-container::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .job-card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 16px;
+      background: rgba(20, 20, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
       padding: 24px 28px;
       backdrop-filter: blur(20px);
       animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .job-card::before {
+      display: none;
     }
 
     .job-card:hover {
-      background: rgba(255, 255, 255, 1);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      background: rgba(30, 30, 30, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
     }
 
     .job-top {
@@ -133,23 +123,18 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      flex-wrap: wrap;
     }
 
     .job-title {
       font-size: 22px;
       font-weight: 600;
-      color: #1a1a1a;
+      color: #ffffff;
       letter-spacing: -0.3px;
       display: flex;
       align-items: center;
       gap: 10px;
       flex: 1;
-      min-width: 200px;
-    }
-
-    .job-title svg {
-      flex-shrink: 0;
+      min-width: 0;
     }
 
     .job-title span {
@@ -162,8 +147,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
     }
 
     .job-user {
@@ -171,32 +154,26 @@
       align-items: center;
       gap: 8px;
       font-size: 15px;
-      color: rgba(0, 0, 0, 0.6);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .job-user strong {
-      color: rgba(0, 0, 0, 0.85);
+      color: rgba(255, 255, 255, 0.85);
       font-weight: 500;
     }
 
-    .job-timestamp {
-      font-size: 13px;
-      color: rgba(0, 0, 0, 0.5);
-      font-weight: 400;
-    }
-
     .thank-you-message {
-      margin-top: 12px;
-      padding: 16px;
-      background: linear-gradient(135deg, rgba(17, 153, 142, 0.15) 0%, rgba(56, 239, 125, 0.15) 100%);
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(17, 153, 142, 0.2) 0%, rgba(56, 239, 125, 0.2) 100%);
       border: 1px solid rgba(56, 239, 125, 0.3);
-      color: #0d8763;
+      color: #38ef7d;
       border-radius: 12px;
       text-align: center;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 500;
       animation: fadeIn 0.5s ease-out;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
     }
 
     @keyframes fadeIn {
@@ -207,19 +184,19 @@
     .empty-state {
       text-align: center;
       padding: 80px 40px;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.3);
       font-size: 24px;
-      font-weight: 400;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px dashed rgba(255, 255, 255, 0.3);
+      font-weight: 300;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       backdrop-filter: blur(10px);
       letter-spacing: 1px;
     }
 
     .ad-banner {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 25px 30px;
       border-radius: 16px;
       text-align: center;
@@ -228,22 +205,23 @@
     }
 
     .ad-banner:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .ad-banner h3 {
-      color: #ffffff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 8px;
       font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .ad-banner p {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.6);
       font-size: 16px;
       font-weight: 400;
     }
@@ -251,7 +229,7 @@
     @keyframes slideIn {
       from {
         opacity: 0;
-        transform: translateY(-20px) scale(0.98);
+        transform: translateY(-30px) scale(0.95);
       }
       to {
         opacity: 1;
@@ -266,7 +244,7 @@
     @keyframes slideOut {
       to {
         opacity: 0;
-        transform: translateX(30px) scale(0.95);
+        transform: translateX(50px) scale(0.95);
       }
     }
 
@@ -278,7 +256,7 @@
       text-transform: uppercase;
       letter-spacing: 0.8px;
       white-space: nowrap;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 12px rgba(250, 248, 248, 0.974);
       flex-shrink: 0;
     }
 
@@ -289,8 +267,9 @@
 
     .status-printing {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      color: rgb(248, 248, 248);
       animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 2px 20px rgba(102, 126, 234, 0.6);
     }
 
     .status-completed {
@@ -301,64 +280,11 @@
     @keyframes pulse {
       0%, 100% { 
         opacity: 1; 
-        transform: scale(1);
+        box-shadow: 0 2px 20px rgba(102, 126, 234, 0.6);
       }
       50% { 
         opacity: 0.85; 
-        transform: scale(1.05);
-      }
-    }
-
-    .error-message {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(239, 68, 68, 0.95);
-      color: white;
-      padding: 16px 24px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 500;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      animation: slideInRight 0.3s ease-out;
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(100px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .dashboard-container {
-        padding: 20px;
-      }
-
-      .header h1 {
-        font-size: 36px;
-      }
-
-      .header p {
-        font-size: 14px;
-      }
-
-      .job-title {
-        font-size: 18px;
-      }
-
-      .job-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .status-badge {
-        align-self: flex-start;
+        box-shadow: 0 2px 30px rgba(102, 126, 234, 0.8);
       }
     }
   </style>
@@ -367,8 +293,6 @@
   <video id="bgVideo" autoplay loop muted playsinline>
     <source src="video.mp4" type="video/mp4">
   </video>
-
-  <div class="bg-overlay"></div>
 
   <div class="dashboard-container">
     <div class="header">
@@ -402,56 +326,19 @@
       measurementId: "G-LMFT81PSMZ"
     };
 
-    let app, db;
-    
-    try {
-      app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-    } catch (error) {
-      console.error("Firebase initialization error:", error);
-      showError("Failed to connect to database");
-    }
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     const jobsContainer = document.getElementById('jobsContainer');
     const activeJobs = new Map();
-
-    function showError(message) {
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.textContent = message;
-      document.body.appendChild(errorDiv);
-      
-      setTimeout(() => {
-        errorDiv.style.animation = 'slideInRight 0.3s ease-out reverse';
-        setTimeout(() => errorDiv.remove(), 300);
-      }, 5000);
-    }
-
-    function formatTimestamp(timestamp) {
-      if (!timestamp) return '';
-      
-      try {
-        const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-        const now = new Date();
-        const diff = Math.floor((now - date) / 1000);
-        
-        if (diff < 60) return 'Just now';
-        if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-        if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-        return date.toLocaleDateString();
-      } catch (e) {
-        return '';
-      }
-    }
 
     function createJobCard(jobId, data) {
       const card = document.createElement('div');
       card.className = 'job-card';
       card.id = `job-${jobId}`;
 
-      const statusClass = `status-${(data.print_status || 'queue').toLowerCase().replace(/\s+/g, '')}`;
-      const showThankYou = (data.print_status || '').toLowerCase() === 'completed';
-      const timestamp = formatTimestamp(data.createdAt);
+      const statusClass = `status-${data.print_status?.toLowerCase() || 'queue'}`;
+      const showThankYou = data.print_status?.toLowerCase() === 'completed';
 
       card.innerHTML = `
         <div class="job-top">
@@ -473,7 +360,6 @@
             </svg>
             <strong>${data.username || 'Anonymous'}</strong>
           </div>
-          ${timestamp ? `<div class="job-timestamp">${timestamp}</div>` : ''}
         </div>
         
         ${showThankYou ? '<div class="thank-you-message">✓ Print Complete – Thank You!</div>' : ''}
@@ -488,7 +374,7 @@
         const newCard = createJobCard(jobId, data);
         existingCard.replaceWith(newCard);
 
-        if ((data.print_status || '').toLowerCase() === 'completed') {
+        if (data.print_status?.toLowerCase() === 'completed') {
           setTimeout(() => {
             const card = document.getElementById(`job-${jobId}`);
             if (card) {
@@ -509,8 +395,7 @@
       const emptyState = jobsContainer.querySelector('.empty-state');
       
       if (hasJobs && emptyState) {
-        emptyState.style.animation = 'fadeOut 0.3s ease-out';
-        setTimeout(() => emptyState.remove(), 300);
+        emptyState.remove();
       } else if (!hasJobs && !emptyState) {
         const empty = document.createElement('div');
         empty.className = 'empty-state';
@@ -519,62 +404,47 @@
       }
     }
 
-    if (db) {
-      try {
-        const q = query(collection(db, "printer_001"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "printer_001"), orderBy("createdAt", "desc"));
 
-        onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            const jobId = change.doc.id;
-            const data = change.doc.data();
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        const jobId = change.doc.id;
+        const data = change.doc.data();
 
-            if (change.type === "added") {
-              if (!activeJobs.has(jobId)) {
-                const emptyState = jobsContainer.querySelector('.empty-state');
-                if (emptyState) emptyState.remove();
+        if (change.type === "added") {
+          if (!activeJobs.has(jobId)) {
+            const emptyState = jobsContainer.querySelector('.empty-state');
+            if (emptyState) emptyState.remove();
 
-                const card = createJobCard(jobId, data);
-                jobsContainer.insertBefore(card, jobsContainer.firstChild);
-                activeJobs.set(jobId, data);
+            const card = createJobCard(jobId, data);
+            jobsContainer.insertBefore(card, jobsContainer.firstChild);
+            activeJobs.set(jobId, data);
 
-                if ((data.print_status || '').toLowerCase() === 'completed') {
+            if (data.print_status?.toLowerCase() === 'completed') {
+              setTimeout(() => {
+                const cardElement = document.getElementById(`job-${jobId}`);
+                if (cardElement) {
+                  cardElement.classList.add('completed');
                   setTimeout(() => {
-                    const cardElement = document.getElementById(`job-${jobId}`);
-                    if (cardElement) {
-                      cardElement.classList.add('completed');
-                      setTimeout(() => {
-                        cardElement.remove();
-                        activeJobs.delete(jobId);
-                        updateEmptyState();
-                      }, 600);
-                    }
-                  }, 5000);
+                    cardElement.remove();
+                    activeJobs.delete(jobId);
+                    updateEmptyState();
+                  }, 600);
                 }
-              }
-            } else if (change.type === "modified") {
-              activeJobs.set(jobId, data);
-              updateJobCard(jobId, data);
-            } else if (change.type === "removed") {
-              const card = document.getElementById(`job-${jobId}`);
-              if (card) {
-                card.classList.add('completed');
-                setTimeout(() => {
-                  card.remove();
-                  activeJobs.delete(jobId);
-                  updateEmptyState();
-                }, 600);
-              }
+              }, 5000);
             }
-          });
-        }, (error) => {
-          console.error("Firestore error:", error);
-          showError("Connection error. Retrying...");
-        });
-      } catch (error) {
-        console.error("Query error:", error);
-        showError("Failed to load print jobs");
-      }
-    }
+          }
+        } else if (change.type === "modified") {
+          activeJobs.set(jobId, data);
+          updateJobCard(jobId, data);
+        } else if (change.type === "removed") {
+          const card = document.getElementById(`job-${jobId}`);
+          if (card) card.remove();
+          activeJobs.delete(jobId);
+          updateEmptyState();
+        }
+      });
+    });
   </script>
 </body>
 </html>

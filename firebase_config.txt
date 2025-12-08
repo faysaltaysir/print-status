@@ -1,9 +1,0 @@
-  const firebaseConfig = {
-    apiKey: "AIzaSyCSt3jHd-89oW48OCX1ebm6pMgPsBaxb5I",
-    authDomain: "printex-917db.firebaseapp.com",
-    projectId: "printex-917db",
-    storageBucket: "printex-917db.firebasestorage.app",
-    messagingSenderId: "97027422855",
-    appId: "1:97027422855:web:0e3bdaa84b60288f47d622",
-    measurementId: "G-73X0W1XZ56"
-  };

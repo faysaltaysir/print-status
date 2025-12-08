@@ -1,9 +1,9 @@
   const firebaseConfig = {
-    apiKey: "AIzaSyDpVmAXTpgjC6rcyLaeegCV2pxV0rauQx8",
-    authDomain: "printin-4ba7b.firebaseapp.com",
-    projectId: "printin-4ba7b",
-    storageBucket: "printin-4ba7b.firebasestorage.app",
-    messagingSenderId: "218508375683",
-    appId: "1:218508375683:web:8e40fdfc254333f85b8db6",
-    measurementId: "G-LMFT81PSMZ"
+    apiKey: "AIzaSyCSt3jHd-89oW48OCX1ebm6pMgPsBaxb5I",
+    authDomain: "printex-917db.firebaseapp.com",
+    projectId: "printex-917db",
+    storageBucket: "printex-917db.firebasestorage.app",
+    messagingSenderId: "97027422855",
+    appId: "1:97027422855:web:0e3bdaa84b60288f47d622",
+    measurementId: "G-73X0W1XZ56"
   };

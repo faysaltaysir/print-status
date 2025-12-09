@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Print Shop Job Display</title>
+  <title>Borno Smart Printing - Live Display</title>
   <style>
     * {
       margin: 0;
@@ -13,7 +13,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      background: #0f0f0f;
+      background: #0a0a0a;
       color: #ffffff;
       height: 100vh;
       overflow: hidden;
@@ -21,12 +21,14 @@
 
     .container {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
       height: 100vh;
       gap: 0;
     }
 
-    /* Video Section */
+    /* ============================================
+       VIDEO SECTION
+    ============================================ */
     .video-section {
       position: relative;
       background: #000000;
@@ -45,23 +47,154 @@
     .video-placeholder {
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.7);
       flex-direction: column;
-      gap: 20px;
+      gap: 30px;
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .video-placeholder svg {
-      width: 60px;
-      height: 60px;
-      opacity: 0.6;
+    .video-placeholder::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 25s linear infinite;
+      opacity: 0.4;
     }
 
-    /* Job Board Section */
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .promo-logo {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255,255,255,0.3);
+      animation: pulse 3s ease-in-out infinite;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .promo-content h1 {
+      font-size: 56px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .promo-content .tagline {
+      font-size: 26px;
+      margin-bottom: 20px;
+      font-weight: 300;
+      opacity: 0.95;
+    }
+
+    .app-link {
+      font-size: 20px;
+      margin: 25px 0;
+    }
+
+    .app-link a {
+      color: #10b981;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 20px;
+      background: rgba(16,185,129,0.25);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: 2px solid rgba(16,185,129,0.4);
+    }
+
+    .app-link a:hover {
+      background: rgba(16,185,129,0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16,185,129,0.4);
+    }
+
+    .steps {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .step:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+    }
+
+    .highlight-box {
+      margin-top: 35px;
+      padding: 25px 40px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(5,150,105,0.3));
+      border-radius: 20px;
+      border: 2px solid rgba(16,185,129,0.5);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .highlight-box .title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .highlight-box .price {
+      font-size: 36px;
+      color: #e3ece9;
+      font-weight: 800;
+      text-shadow: 0 2px 15px rgba(16,185,129,0.6);
+    }
+
+    /* ============================================
+       JOB BOARD SECTION
+    ============================================ */
     .board-section {
       display: flex;
       flex-direction: column;
@@ -69,47 +202,134 @@
       padding: 40px;
       gap: 30px;
       overflow: hidden;
+      position: relative;
+    }
+
+    .board-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(102,126,234,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102,126,234,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.3;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
     }
 
     .board-header {
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .board-header h1 {
       font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #667eea, #f093fb, #667eea);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
 
     .board-header p {
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.6);
-      letter-spacing: 1px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 2px;
       text-transform: uppercase;
+      margin-bottom: 16px;
     }
 
     .status-indicator {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 14px;
+      gap: 10px;
+      font-size: 13px;
       color: rgba(255, 255, 255, 0.7);
-      justify-content: center;
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #10b981;
       animation: pulse-dot 2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(16,185,129,0.8);
     }
 
     @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.2); }
+      0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+      }
+      50% { 
+        opacity: 0.6; 
+        transform: scale(1.3);
+      }
+    }
+
+    .status-dot.offline {
+      background: #ef4444;
+      box-shadow: 0 0 10px rgba(239,68,68,0.8);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .stat-item {
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .stat-item:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      display: block;
+      color: #667eea;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
     }
 
     /* Jobs List */
@@ -120,68 +340,98 @@
       gap: 16px;
       overflow-y: auto;
       padding-right: 12px;
+      position: relative;
+      z-index: 1;
     }
 
     .jobs-list::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
     }
 
     .jobs-list::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     .jobs-list::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 3px;
-    }
-
-    .jobs-list::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      border-radius: 4px;
     }
 
     /* Job Card */
     .job-card {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 20px 24px;
-      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px 28px;
+      backdrop-filter: blur(15px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: slideInLeft 0.4s ease-out;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: slideInLeft 0.5s ease-out;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+    }
+
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .job-card:hover::before {
+      left: 100%;
+    }
+
+    .job-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 0.4s ease;
+    }
+
+    .job-card:hover::after {
+      width: 100%;
     }
 
     .job-card:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(102,126,234,0.5);
+      transform: translateX(6px) scale(1.02);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
 
     @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
+      from { 
+        opacity: 0; 
+        transform: translateX(-40px);
       }
-      to {
-        opacity: 1;
+      to { 
+        opacity: 1; 
         transform: translateX(0);
       }
     }
 
     .job-card.removing {
-      animation: slideOutRight 0.4s ease-in forwards;
+      animation: slideOutRight 0.5s ease-in forwards;
     }
 
     @keyframes slideOutRight {
-      to {
-        opacity: 0;
-        transform: translateX(30px);
+      to { 
+        opacity: 0; 
+        transform: translateX(50px) scale(0.9);
       }
     }
 
@@ -193,70 +443,98 @@
     .job-filename {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: -0.3px;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    .job-card:hover .job-filename {
+      color: #667eea;
+    }
+
+    .job-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .job-username {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .job-username svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
     }
 
-    /* Status Badge */
+    .job-time {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .job-time svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
     .job-status {
       flex-shrink: 0;
     }
 
     .status-badge {
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 12px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: 1px;
       white-space: nowrap;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
-    .status-queued {
-      background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-      color: #ffffff;
+    .status-badge:hover {
+      transform: scale(1.05);
     }
 
-    .status-printing {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #ffffff;
-      animation: pulse-badge 1.5s ease-in-out infinite;
+    .status-queued { 
+      background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); 
+      color: #fff;
+    }
+    
+    .status-printing { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      color: #fff; 
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    
+    .status-completed { 
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+      color: #fff;
+    }
+    
+    .status-failed { 
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+      color: #fff;
     }
 
     @keyframes pulse-badge {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.85; }
-    }
-
-    .status-completed {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #ffffff;
-    }
-
-    .status-failed {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      color: #ffffff;
+      50% { opacity: 0.9; }
     }
 
     /* Empty State */
@@ -266,12 +544,12 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      padding: 60px 40px;
-      color: rgba(255, 255, 255, 0.4);
+      padding: 80px 40px;
+      color: rgba(255,255,255,0.4);
       font-size: 18px;
       text-align: center;
       flex: 1;
-      animation: fadeIn 0.5s ease-out;
+      animation: fadeIn 0.6s ease-out;
     }
 
     @keyframes fadeIn {
@@ -279,47 +557,34 @@
       to { opacity: 1; }
     }
 
-    .empty-state svg {
-      width: 48px;
-      height: 48px;
+    .empty-state svg { 
+      width: 64px; 
+      height: 64px; 
       opacity: 0.3;
+      animation: float 3s ease-in-out infinite;
     }
 
     /* Responsive */
-    @media (max-width: 1200px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 1400px) {
+      .container { grid-template-columns: 1fr 1fr; }
+    }
 
-      .video-section {
-        display: none;
+    @media (max-width: 1024px) {
+      .container { 
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto 1fr;
       }
-
-      .board-section {
-        padding: 30px;
-      }
-
-      .board-header h1 {
-        font-size: 36px;
-      }
+      .video-section { min-height: 50vh; }
+      .board-section { padding: 30px; }
     }
 
     @media (max-width: 768px) {
-      .board-section {
-        padding: 20px;
-      }
-
-      .board-header h1 {
-        font-size: 28px;
-      }
-
-      .job-card {
-        flex-direction: column;
+      .video-section { display: none; }
+      .board-section { padding: 20px; }
+      .board-header h1 { font-size: 32px; }
+      .job-card { 
+        flex-direction: column; 
         align-items: flex-start;
-      }
-
-      .job-status {
-        align-self: flex-start;
       }
     }
   </style>
@@ -328,16 +593,35 @@
   <div class="container">
     <!-- Promotional Video Section -->
     <div class="video-section">
-      <video
-        id="promotionalVideo"
-        autoplay
-        loop
-        muted
-        playsinline
-      >
+      <div class="video-placeholder">
+        <div class="promo-logo">🖨️</div>
+        <div class="promo-content">
+          <h1>Borno Smart Printing</h1>
+          <p class="tagline">Print Hassle Free, Anytime</p>
+          
+          <div class="app-link">
+            Download our app from<br>
+            <br>
+            <a href="https://borno.online" target="_blank" rel="noopener">borno.online</a>
+          </div>
+          
+          <div class="steps">
+            <span class="step">📱 Scan</span>
+            <span class="step">⬆️ Upload</span>
+            <span class="step">💳 Pay</span>
+            <span class="step">🖨️ Print</span>
+          </div>
+          
+          <div class="highlight-box">
+            <!-- <div class="title">Lowest Cost in Town</div> -->
+            <div class="price">Color Print <span style="color: #26dc7e;">@ 2.5 Taka</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Uncomment and add video source when ready -->
+      <!-- <video id="promotionalVideo" autoplay loop muted playsinline>
         <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      </video> -->
     </div>
 
     <!-- Job Status Board Section -->
@@ -346,8 +630,23 @@
         <h1>PRINT QUEUE</h1>
         <p>Live Job Monitor</p>
         <div class="status-indicator">
-          <div class="status-dot"></div>
-          <span id="systemStatus">System Online</span>
+          <div class="status-dot" id="statusDot"></div>
+          <span id="systemStatus">Connecting...</span>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-number" id="totalJobs">0</span>
+            <span class="stat-label">Total Today</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="activeJobs">0</span>
+            <span class="stat-label">In Queue</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="completedJobs">0</span>
+            <span class="stat-label">Completed</span>
+          </div>
         </div>
       </div>
 
@@ -369,24 +668,25 @@
     // FIREBASE INITIALIZATION
     // ============================================
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot, limit } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCSt3jHd-89oW48OCX1ebm6pMgPsBaxb5I",
-    authDomain: "printex-917db.firebaseapp.com",
-    projectId: "printex-917db",
-    storageBucket: "printex-917db.firebasestorage.app",
-    messagingSenderId: "97027422855",
-    appId: "1:97027422855:web:0e3bdaa84b60288f47d622",
-    measurementId: "G-73X0W1XZ56"
-  };
+    const firebaseConfig = {
+      apiKey: "AIzaSyCSt3jHd-89oW48OCX1ebm6pMgPsBaxb5I",
+      authDomain: "printex-917db.firebaseapp.com",
+      projectId: "printex-917db",
+      storageBucket: "printex-917db.firebasestorage.app",
+      messagingSenderId: "97027422855",
+      appId: "1:97027422855:web:0e3bdaa84b60288f47d622",
+      measurementId: "G-73X0W1XZ56"
+    };
 
     let app, db;
     try {
       app = initializeApp(firebaseConfig);
       db = getFirestore(app);
+      console.log("✅ Firebase initialized successfully");
     } catch (error) {
-      console.error("Firebase initialization error:", error);
+      console.error("❌ Firebase initialization error:", error);
     }
 
     // ============================================
@@ -394,8 +694,61 @@
     // ============================================
     const jobsList = document.getElementById('jobsList');
     const systemStatus = document.getElementById('systemStatus');
+    const statusDot = document.getElementById('statusDot');
+    const totalJobsEl = document.getElementById('totalJobs');
+    const activeJobsEl = document.getElementById('activeJobs');
+    const completedJobsEl = document.getElementById('completedJobs');
+
     const activeJobs = new Map();
     const removalTimers = new Map();
+    
+    let stats = {
+      total: 0,
+      active: 0,
+      completed: 0
+    };
+
+    const statusIcons = {
+      queued: '⏳',
+      printing: '🖨️',
+      completed: '✓',
+      failed: '✗'
+    };
+
+    // ============================================
+    // UTILITY FUNCTIONS
+    // ============================================
+    function formatTime(timestamp) {
+      if (!timestamp) return 'Just now';
+      
+      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      const now = new Date();
+      const diffMs = now - date;
+      const diffMins = Math.floor(diffMs / 60000);
+      
+      if (diffMins < 1) return 'Just now';
+      if (diffMins < 60) return `${diffMins}m ago`;
+      const diffHours = Math.floor(diffMins / 60);
+      if (diffHours < 24) return `${diffHours}h ago`;
+      return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function updateStats() {
+      stats.active = activeJobs.size;
+      totalJobsEl.textContent = stats.total;
+      activeJobsEl.textContent = stats.active;
+      completedJobsEl.textContent = stats.completed;
+    }
+
+    function updateSystemStatus(online) {
+      if (online) {
+        systemStatus.textContent = 'System Online';
+        statusDot.classList.remove('offline');
+      } else {
+        systemStatus.textContent = 'Connection Error';
+        statusDot.classList.add('offline');
+      }
+    }
 
     // ============================================
     // UI FUNCTIONS
@@ -405,25 +758,42 @@
       card.className = 'job-card';
       card.id = `job-${jobId}`;
 
-      const status = (jobData.print_status || 'queued').toLowerCase();
-      const statusClass = `status-${status.replace(/\s+/g, '')}`;
+      const status = (jobData.print_status || 'queued').toLowerCase().replace(/\s+/g, '');
+      const fileName = jobData.fileName || jobData.filename || 'Unknown File';
+      const userName = jobData.userName || jobData.username || 'Anonymous';
+      const timeAgo = formatTime(jobData.createdAt || jobData.timestamp);
 
       card.innerHTML = `
         <div class="job-info">
-          <div class="job-filename">${jobData.fileName || 'Unknown File'}</div>
-          <div class="job-username">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-            <span>${jobData.userName || 'Anonymous'}</span>
+          <div class="job-filename">${fileName}</div>
+          <div class="job-meta">
+            <div class="job-username">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+              <span>${userName}</span>
+            </div>
+            <div class="job-time">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              ${timeAgo}
+            </div>
           </div>
         </div>
         <div class="job-status">
-          <div class="status-badge ${statusClass}">
-            ${status}
+          <div class="status-badge status-${status}">
+            ${statusIcons[status] || '•'} ${status}
           </div>
         </div>
       `;
+
+      card.addEventListener('click', () => {
+        card.style.transform = 'translateX(6px) scale(0.98)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 150);
+      });
 
       return card;
     }
@@ -434,8 +804,7 @@
     }
 
     function showEmptyStateIfNeeded() {
-      const cards = jobsList.querySelectorAll('.job-card');
-      if (cards.length === 0) {
+      if (activeJobs.size === 0) {
         const emptyState = document.createElement('div');
         emptyState.className = 'empty-state';
         emptyState.innerHTML = `
@@ -453,33 +822,37 @@
     function addOrUpdateJob(jobId, jobData) {
       clearEmptyState();
 
-      // Clear existing removal timer if present
+      // Clear existing removal timer
       if (removalTimers.has(jobId)) {
         clearTimeout(removalTimers.get(jobId));
         removalTimers.delete(jobId);
       }
 
       const existingCard = document.getElementById(`job-${jobId}`);
+      const newCard = createJobCard(jobId, jobData);
+      
       if (existingCard) {
-        const newCard = createJobCard(jobId, jobData);
         existingCard.replaceWith(newCard);
       } else {
-        const newCard = createJobCard(jobId, jobData);
         jobsList.insertBefore(newCard, jobsList.firstChild);
+        stats.total++;
       }
 
       activeJobs.set(jobId, jobData);
+      updateStats();
 
-      // Auto-remove jobs after specified duration based on status
+      // Auto-remove based on status
       const status = (jobData.print_status || 'queued').toLowerCase();
       let removalDelay = null;
 
       if (status === 'queued') {
-        removalDelay = 60000; // 1 minute for queued jobs
-      } else if (status === 'printing') {
-        removalDelay = null; // Keep printing jobs visible
-      } else if (status === 'completed' || status === 'failed') {
-        removalDelay = 10000; // 10 seconds for completed/failed jobs
+        removalDelay = 120000; // 2 minutes
+      } else if (status === 'completed') {
+        removalDelay = 15000; // 15 seconds
+        stats.completed++;
+        updateStats();
+      } else if (status === 'failed') {
+        removalDelay = 20000; // 20 seconds
       }
 
       if (removalDelay) {
@@ -498,8 +871,9 @@
           card.remove();
           activeJobs.delete(jobId);
           removalTimers.delete(jobId);
+          updateStats();
           showEmptyStateIfNeeded();
-        }, 400);
+        }, 500);
       }
     }
 
@@ -510,31 +884,69 @@
       try {
         const q = query(
           collection(db, "printer_001"),
-          orderBy("createdAt", "desc")
+          orderBy("createdAt", "desc"),
+          limit(50)
         );
 
-        onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            const jobId = change.doc.id;
-            const jobData = change.doc.data();
+        const unsubscribe = onSnapshot(q, 
+          (snapshot) => {
+            console.log(`📥 Received ${snapshot.docs.length} documents`);
+            updateSystemStatus(true);
 
-            if (change.type === "added" || change.type === "modified") {
-              addOrUpdateJob(jobId, jobData);
-            } else if (change.type === "removed") {
-              removeJob(jobId);
-            }
-          });
-          systemStatus.textContent = "System Online";
-        }, (error) => {
-          console.error("Firestore listener error:", error);
-          systemStatus.textContent = "Connection Error";
+            snapshot.docChanges().forEach((change) => {
+              const jobId = change.doc.id;
+              const jobData = change.doc.data();
+
+              if (change.type === "added" || change.type === "modified") {
+                console.log(`${change.type === "added" ? "➕" : "🔄"} Job ${jobId}:`, jobData);
+                addOrUpdateJob(jobId, jobData);
+              } else if (change.type === "removed") {
+                console.log(`➖ Job removed: ${jobId}`);
+                removeJob(jobId);
+              }
+            });
+          },
+          (error) => {
+            console.error("❌ Firestore listener error:", error);
+            updateSystemStatus(false);
+          }
+        );
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+          if (unsubscribe) unsubscribe();
         });
+
       } catch (error) {
-        console.error("Query setup error:", error);
+        console.error("❌ Error setting up Firestore listener:", error);
+        updateSystemStatus(false);
       }
+    } else {
+      console.error("❌ Database not initialized");
+      updateSystemStatus(false);
     }
 
+    // ============================================
+    // PERIODIC CLEANUP
+    // ============================================
+    setInterval(() => {
+      const now = Date.now();
+      activeJobs.forEach((jobData, jobId) => {
+        const status = (jobData.print_status || 'queued').toLowerCase();
+        const createdAt = jobData.createdAt?.toDate?.() || new Date(jobData.createdAt);
+        const age = now - createdAt.getTime();
 
+        // Auto-cleanup old jobs that weren't removed by timer
+        if ((status === 'completed' && age > 30000) || 
+            (status === 'failed' && age > 40000) ||
+            (status === 'queued' && age > 180000)) {
+          console.log(`🧹 Cleaning up old job: ${jobId}`);
+          removeJob(jobId);
+        }
+      });
+    }, 30000); // Check every 30 seconds
+
+    console.log("🚀 Display system initialized and ready");
   </script>
 </body>
 </html>

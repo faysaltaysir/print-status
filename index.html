@@ -21,7 +21,7 @@
 
     .container {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 2fr 1fr;
       height: 100vh;
       gap: 0;
     }
@@ -190,6 +190,9 @@
       color: #e3ece9;
       font-weight: 800;
       text-shadow: 0 2px 15px rgba(16,185,129,0.6);
+    }
+    .name{
+        font-size: 20px;
     }
 
     /* ============================================
@@ -602,7 +605,7 @@
           <div class="app-link">
             Download our app from<br>
             <br>
-            <a href="https://borno.online" target="_blank" rel="noopener">borno.online</a>
+            <a href="https://borno.online" target="_blank" rel="noopener" style="color: white;">borno.online</a>
           </div>
           
           <div class="steps">
@@ -614,7 +617,12 @@
           
           <div class="highlight-box">
             <!-- <div class="title">Lowest Cost in Town</div> -->
-            <div class="price">Color Print <span style="color: #26dc7e;">@ 2.5 Taka</span></div>
+            
+            <div class="price">Color Print <span style="text-decoration: line-through; text-decoration-color:red;">3.5 Taka</span></div>
+            <span class="price" style="color: #26dc7e;">2.5 Taka</span>
+            <!-- <span style="strike through">3.5</span> -->
+             
+
           </div>
         </div>
       </div>
@@ -765,13 +773,13 @@
 
       card.innerHTML = `
         <div class="job-info">
-          <div class="job-filename">${fileName}</div>
+          <div class="job-filename">${userName}</div>
           <div class="job-meta">
             <div class="job-username">
               <svg fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               </svg>
-              <span>${userName}</span>
+              <div>${fileName}</div>
             </div>
             <div class="job-time">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -846,8 +854,8 @@
       let removalDelay = null;
 
       if (status === 'queued') {
-        removalDelay = 120000; // 2 minutes
-      } else if (status === 'completed') {
+        removalDelay = 10000; // 2 minutes
+      } else if (status === 'printing started') {
         removalDelay = 15000; // 15 seconds
         stats.completed++;
         updateStats();
@@ -939,7 +947,7 @@
         // Auto-cleanup old jobs that weren't removed by timer
         if ((status === 'completed' && age > 30000) || 
             (status === 'failed' && age > 40000) ||
-            (status === 'queued' && age > 180000)) {
+            (status === 'queued' && age > 30000)) {
           console.log(`🧹 Cleaning up old job: ${jobId}`);
           removeJob(jobId);
         }
